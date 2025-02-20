@@ -7,6 +7,8 @@ const CountryDetail = ({ country, onClose }) => {
     const [details, setDetails] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
+
 
     useEffect(() => {
         const fetchCountryDetails = async () => {
@@ -14,7 +16,7 @@ const CountryDetail = ({ country, onClose }) => {
             setError("");
             try {
                 console.log("Fetching country details for:", country.cca3);
-                const response = await axios.get(`http://localhost:5000/api/countries/${country.cca3}`);
+                const response = await axios.get(`${API_BASE_URL}/api/countries/${country.cca3}`);
                 console.log("API Response:", response.data);
                 setDetails(response.data);
             } catch (err) {
